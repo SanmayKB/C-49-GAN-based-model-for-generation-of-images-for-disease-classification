@@ -94,7 +94,67 @@ Both experiments used the same validation set of 181 real images.
 
 The results indicate that adding synthetic images did not produce an improvement in overall validation accuracy in these experiments, although a small improvement in macro F1-score was observed.
 
-## 6. Evaluation of Generated Images
+## 6. Implementation Details
+
+### A. Dataset Loading
+
+The dataset is downloaded using the `kagglehub` Python library.
+
+- Dataset: Skin Disease Classification Image Dataset.
+- Dataset subset: `Split_smol`.
+- Training directory: `Split_smol/train`.
+
+### B. CGAN Configuration
+
+The Conditional GAN was implemented using TensorFlow/Keras with the following configuration:
+
+| Parameter | Value |
+|---|---:|
+| Image height | 64 pixels |
+| Image width | 64 pixels |
+| Image channels | 3 (RGB) |
+| Batch size | 64 |
+| Latent dimension | 128 |
+| Number of classes | 9 |
+| Training epochs | 200 |
+| Learning rate | 0.0002 |
+| Random seed | 42 |
+| Sample generation interval | Every 5 epochs |
+
+The generator receives a random latent vector and a one-hot encoded class label to generate class-conditioned images.
+
+### C. Synthetic Data Generation
+
+After CGAN training, the generator was used to produce 20 synthetic images for each of the nine disease categories, resulting in 180 synthetic images.
+
+### D. CNN Classifier Implementation
+
+A CNN-based classifier was implemented using TensorFlow/Keras.
+
+The model architecture consists of:
+
+- Three convolutional blocks.
+- Global Average Pooling (GAP).
+- Dense layer.
+- Dropout layer.
+- Nine-class softmax output layer.
+
+The classifier contains 102,089 trainable parameters and was trained for 10 epochs in each experimental condition.
+
+### E. Experimental Comparison
+
+Two training configurations were evaluated:
+
+1. **Real-only:** The classifier was trained using 697 real training images.
+2. **Real + synthetic:** The classifier was trained using 697 real images and 180 generated images, giving 877 training images.
+
+Both configurations were evaluated using the same 181 real validation images.
+
+Accuracy and macro F1-score were used to compare classification performance.
+
+The complete implementation is available in the notebooks directory.
+
+## 7. Evaluation of Generated Images
 
 A preliminary evaluation was also performed by checking the agreement between the generated images' requested class labels and predictions from the baseline classifier.
 
@@ -102,7 +162,7 @@ The classifier agreed with the requested labels for 21.11% of the 180 synthetic 
 
 This result should be interpreted cautiously because the baseline classifier itself had limited classification performance. It does not independently establish whether the generated images have correct medical labels.
 
-## 7. Repository Structure
+## 8. Repository Structure
 
 ```text
 GAN-based-model-for-generation-of-images-for-disease-classification/
@@ -130,7 +190,7 @@ GAN-based-model-for-generation-of-images-for-disease-classification/
 └── README.md
 ```
 
-## 8. Technologies Used
+## 9. Technologies Used
 
 - Python
 - TensorFlow / Keras
@@ -141,7 +201,7 @@ GAN-based-model-for-generation-of-images-for-disease-classification/
 - Google Colab
 - Kaggle
 
-## 9. How to Run
+## 10. How to Run
 
 The project is implemented using Google Colab notebooks.
 
@@ -182,7 +242,7 @@ The project is implemented using Google Colab notebooks.
 
 **Note:** Exact dataset paths and dependencies should follow the configuration cells in the respective notebooks.
 
-## 10. Limitations
+## 11. Limitations
 
 - The dataset is relatively small.
 - The generated images have limited visual detail.
@@ -191,7 +251,7 @@ The project is implemented using Google Colab notebooks.
 - The experiments used a validation set rather than an independent test set.
 - Only one experimental run per training condition was evaluated.
 
-## 11. Conclusion
+## 12. Conclusion
 
 This project demonstrates a basic CGAN-based approach to generating synthetic skin disease images and evaluates their use in a CNN-based classification task.
 
