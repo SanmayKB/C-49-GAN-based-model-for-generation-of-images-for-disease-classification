@@ -112,14 +112,23 @@ GAN-based-model-for-generation-of-images-for-disease-classification/
 │   └── evaluation_pipeline.ipynb
 │
 ├── models/
-│   └── generator_final.keras
+│   ├── generator_final.keras
+│   ├── real_only_final.keras
+│   └── real_plus_synthetic_final.keras
 │
-├── README.md
+├── results/
+│   ├── README.md
+│   ├── results_summary.csv
+│   ├── training_histories.json
+│   └── validation_accuracy.png
 │
-└── ...
+├── submission/
+│   ├── C_C49_Final_Evaluation_Presentation.pptx
+│   ├── C_C49_Final_Project_Report.pdf
+│   └── README.md
+│
+└── README.md
 ```
-
-*The directory structure above is illustrative; actual paths may vary.*
 
 ## 8. Technologies Used
 
