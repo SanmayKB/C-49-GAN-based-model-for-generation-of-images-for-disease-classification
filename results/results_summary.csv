@@ -1,0 +1,3 @@
+Experiment,Best validation accuracy (%),Final validation accuracy (%),Training images
+Real-only CNN,32.6,29.28,697
+Real + synthetic CNN,31.49,28.73,877
