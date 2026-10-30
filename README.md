@@ -143,13 +143,44 @@ GAN-based-model-for-generation-of-images-for-disease-classification/
 
 ## 9. How to Run
 
-1. Open the CGAN notebook in Google Colab.
-2. Download or connect the required dataset from Kaggle.
-3. Install the dependencies specified in the notebook.
-4. Run the notebook cells to load the dataset and work with the CGAN.
-5. Open the evaluation pipeline notebook to generate synthetic images and perform the classification experiments.
+The project is implemented using Google Colab notebooks.
 
-The trained generator model is provided in the `models` directory.
+### Prerequisites
+- A Google account with access to Google Colab.
+- Internet connectivity.
+- Access to the Kaggle dataset.
+- Python environment with TensorFlow/Keras and the required libraries.
+
+### Step 1: Access the Notebooks
+1. Open the `notebooks/` directory in this repository.
+2. Open `cgan_skin_disease_fixed.ipynb` in Google Colab.
+3. Open `evaluation_pipeline.ipynb` separately for classification evaluation.
+
+### Step 2: Download the Dataset
+1. Open the Kaggle dataset page: [Skin Disease Classification Image Dataset](https://www.kaggle.com/datasets/riyaelizashaju/skin-disease-classification-image-dataset).
+2. Follow the dataset download procedure specified in the CGAN notebook.
+3. Ensure the `Split_smol` dataset directory is available in the expected location.
+
+### Step 3: Run the CGAN Notebook
+1. Execute the notebook cells in order.
+2. Download and load the dataset.
+3. Configure the image size, batch size and latent dimension.
+4. Train the Conditional GAN.
+5. Generate synthetic images for the nine disease categories.
+
+### Step 4: Run the Evaluation Pipeline
+1. Open `evaluation_pipeline.ipynb` in Google Colab.
+2. Execute the cells in sequence.
+3. Load the real dataset and generated synthetic images.
+4. Train and evaluate the real-only and real-plus-synthetic classifiers.
+5. Review the validation metrics and generated results.
+
+### Step 5: Review the Results
+- Trained models are available in the `models/` directory.
+- Experimental metrics and training histories are available in `results/`.
+- The final report and presentation are available in `submission/`.
+
+**Note:** Exact dataset paths and dependencies should follow the configuration cells in the respective notebooks.
 
 ## 10. Limitations
 
